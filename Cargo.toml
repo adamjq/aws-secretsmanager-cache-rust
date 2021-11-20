@@ -8,7 +8,7 @@ license = "MIT OR Apache-2.0"
 homepage = "https://github.com/adamjq/aws-secretsmanager-cache-rust"
 repository = "https://github.com/adamjq/aws-secretsmanager-cache-rust"
 readme = "README.md"
-keywords = ["aws", "aws-lambda", "aws-secrets-manager", "aws-sdk-rust", "LRU", "cache"]
+keywords = ["aws", "aws-secrets-manager", "aws-sdk-rust", "LRU", "cache"]
 categories = ["caching"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

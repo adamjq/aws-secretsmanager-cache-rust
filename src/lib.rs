@@ -7,7 +7,7 @@
 //! and the [AWS SDK for Rust](https://github.com/awslabs/aws-sdk-rust).
 //!
 //! The client internally uses an LRU (least-recently used) caching scheme that provides
-//! O(1) insertions and O(1)lookups for cached values.
+//! O(1) insertions and O(1) lookups for cached values.
 
 //! ## Example
 //! ```rust

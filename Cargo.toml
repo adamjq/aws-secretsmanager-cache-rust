@@ -1,7 +1,12 @@
 [package]
 name = "aws-secretsmanager-cache"
 version = "0.1.0"
+authors = ["Adam Quigley"]
 edition = "2021"
+license = "MIT"
+repository = "https://github.com/adamjq/aws-secretsmanager-cache-rust"
+readme = "README.md"
+keywords = ["aws", "aws-lambda", "aws-secrets-manager", "aws-sdk-rust", "LRU", "cache"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

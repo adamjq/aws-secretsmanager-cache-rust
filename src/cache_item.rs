@@ -53,7 +53,7 @@ mod tests {
         let cache_item = CacheItem::new("secret_value", cache_item_ttl);
 
         assert_eq!(cache_item.value, "secret_value");
-        assert_eq!(cache_item.is_expired(), false);
+        assert!(!cache_item.is_expired());
     }
 
     #[test]
@@ -65,6 +65,6 @@ mod tests {
         thread::sleep(one_hundred_millis);
 
         assert_eq!(cache_item.value, "secret_value");
-        assert_eq!(cache_item.is_expired(), true);
+        assert!(cache_item.is_expired());
     }
 }

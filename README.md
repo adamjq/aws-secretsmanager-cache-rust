@@ -108,6 +108,25 @@ async fn main() {
 }
 ```
 
+## Development
+
+### Linting
+
+The project uses [rustfmt](https://github.com/rust-lang/rustfmt) and [clippy](https://github.com/rust-lang/rust-clippy) for 
+formatting and linting. Follow the instructions to install `rustfmt` and `clippy` and run:
+
+```bash
+cargo fmt
+cargo clippy --fix
+```
+
+### Tests
+
+Run unit tests locally with:
+```bash
+cargo test
+```
+
 ## License
 
 Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) or the [MIT license](https://opensource.org/licenses/MIT), at your option. Files in the project may not be copied, modified, or distributed except according to those terms.

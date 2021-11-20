@@ -59,6 +59,12 @@ impl CacheConfig {
     }
 }
 
+impl Default for CacheConfig {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

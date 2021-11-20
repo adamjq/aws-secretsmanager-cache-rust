@@ -52,8 +52,8 @@ pub struct GetSecretStringBuilder<'a> {
 impl<'a> GetSecretStringBuilder<'a> {
     pub fn new(secret_cache: &'a mut SecretCache, secret_id: String) -> Self {
         GetSecretStringBuilder {
-            secret_cache: secret_cache,
-            secret_id: secret_id,
+            secret_cache,
+            secret_id,
             force_refresh: false,
         }
     }
@@ -78,13 +78,10 @@ impl<'a> GetSecretStringBuilder<'a> {
     /// Values are stored in the cache with the cache_item_ttl from the CacheConfig.
     pub async fn send(&mut self) -> Result<String, SdkError<GetSecretValueError>> {
         if !self.force_refresh {
-            match self.secret_cache.cache.get(&self.secret_id) {
-                Some(cache_item) => {
-                    if !cache_item.is_expired() {
-                        return Ok(cache_item.value.clone());
-                    }
+            if let Some(cache_item) = self.secret_cache.cache.get(&self.secret_id) {
+                if !cache_item.is_expired() {
+                    return Ok(cache_item.value.clone());
                 }
-                None => {}
             }
         }
 
@@ -97,9 +94,9 @@ impl<'a> GetSecretStringBuilder<'a> {
                 self.secret_cache
                     .cache
                     .put(self.secret_id.clone(), cache_item);
-                return Ok(secret_value);
+                Ok(secret_value)
             }
-            Err(e) => return Err(e),
+            Err(e) => Err(e),
         }
     }
 
@@ -114,8 +111,8 @@ impl<'a> GetSecretStringBuilder<'a> {
             .await
         {
             Ok(resp) => return Ok(resp.secret_string.as_deref().unwrap().to_string()),
-            Err(e) => return Err(e),
-        };
+            Err(e) => Err(e),
+        }
     }
 }
 

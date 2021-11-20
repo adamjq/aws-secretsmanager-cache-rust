@@ -1,13 +1,13 @@
 # AWS Secrets Manager Rust Caching Client
 
 This crate provides a client for in-process caching of secrets from AWS Secrets Manager for Rust applications. 
-It is heavily inspired by the [AWS Secrets Manager Go Caching Client](https://github.com/aws/aws-secretsmanager-caching-go) 
+It's heavily inspired by the [AWS Secrets Manager Go Caching Client](https://github.com/aws/aws-secretsmanager-caching-go) 
 and the [AWS SDK for Rust](https://github.com/awslabs/aws-sdk-rust).
 
 The client internally uses an LRU (least-recently used) caching scheme that provides 
-O(1) insertions and O(1)lookups for cached values.
+O(1) insertions and O(1) lookups for cached values.
 
-**Please Note: This client depends on the AWS SDK for Rust which is current in an alpha release state. The functionality of this client should therefor also be considered an alpha release and may change in the future**
+**Please Note: This client depends on the AWS SDK for Rust which is currently in an alpha release state. The functionality of this client should therefore be considered an alpha release and may change in the future**
 
 ## Getting started
 
@@ -60,7 +60,7 @@ This can be done with `force_refresh()`, for example:
 - `max_cache_size usize` The maximum number of secrets to maintain in the cache 
 before evicting the least frequently accessed
 - `cache_item_ttl u128` The number of nanoseconds a cached secret will be considered 
-valid before the secret value is required to be refreshed. Refreshing happens synchronously.
+valid before the secret value requires a refresh. Refreshing happens synchronously.
 
 ```rust
 use aws_sdk_secretsmanager::Client;
@@ -83,7 +83,7 @@ async fn main() {
 
 ## Global Caching
 
-Certain cloud runtimes like AWS Lambda encourage initializing clients in the global scope to avoid initialization for
+Certain cloud environments like AWS Lambda encourage initializing clients in the global scope to avoid initialization for
 each function invocation. This can be achieved using the `lazy_static` crate, for example: 
 
 ```rust

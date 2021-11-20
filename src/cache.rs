@@ -129,7 +129,7 @@ mod tests {
         let builder = GetSecretStringBuilder::new(&mut secret_cache, "service/secret".to_string());
 
         assert_eq!(builder.secret_id, "service/secret");
-        assert_eq!(builder.force_refresh, false);
+        assert!(!builder.force_refresh);
     }
 
     #[test]
@@ -141,7 +141,7 @@ mod tests {
             .force_refresh();
 
         assert_eq!(builder.secret_id, "service/secret");
-        assert_eq!(builder.force_refresh, true);
+        assert!(builder.force_refresh);
     }
 
     // provides a mocked AWS SecretsManager client for testing

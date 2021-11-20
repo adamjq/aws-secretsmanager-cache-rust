@@ -110,4 +110,4 @@ async fn main() {
 
 ## License
 
-This project is licensed under the Apache-2.0 License.
+Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0) or the [MIT license](https://opensource.org/licenses/MIT), at your option. Files in the project may not be copied, modified, or distributed except according to those terms.

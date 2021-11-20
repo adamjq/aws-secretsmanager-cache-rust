@@ -1,5 +1,7 @@
 # AWS Secrets Manager Rust Caching Client
 
+![CI](https://github.com/adamjq/aws-secretsmanager-cache-rust/actions/workflows/ci.yml/badge.svg)
+
 This crate provides a client for in-process caching of secrets from AWS Secrets Manager for Rust applications. 
 It's heavily inspired by the [AWS Secrets Manager Go Caching Client](https://github.com/aws/aws-secretsmanager-caching-go) 
 and the [AWS SDK for Rust](https://github.com/awslabs/aws-sdk-rust).

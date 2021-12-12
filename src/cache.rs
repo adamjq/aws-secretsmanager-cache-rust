@@ -146,14 +146,9 @@ mod tests {
 
     // provides a mocked AWS SecretsManager client for testing
     fn get_mock_secretsmanager_client() -> SecretsManagerClient {
-        let creds = Credentials::from_keys(
-            "ANOTREAL",
-            "notrealrnrELgWzOk3IfjzDKtFBhDby",
-            Some("notarealsessiontoken".to_string()),
-        );
         let conf = Config::builder()
             .region(Region::new("ap-southeast-2"))
-            .credentials_provider(creds)
+            .credentials_provider(Credentials::new("asdf", "asdf", None, None, "test"))
             .build();
 
         SecretsManagerClient::from_conf(conf)

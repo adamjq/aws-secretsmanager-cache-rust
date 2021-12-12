@@ -1,7 +1,7 @@
 [package]
 name = "aws-secretsmanager-cache"
 description = "A client for in-process caching of secrets from AWS Secrets manager"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Adam Quigley"]
 edition = "2021"
 license = "MIT OR Apache-2.0"

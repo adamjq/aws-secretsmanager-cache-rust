@@ -9,8 +9,6 @@ and the [AWS SDK for Rust](https://github.com/awslabs/aws-sdk-rust).
 The client internally uses an LRU (least-recently used) caching scheme that provides 
 O(1) insertions and O(1) lookups for cached values.
 
-**Please Note: This client depends on the AWS SDK for Rust which is currently in an alpha release state. The functionality of this client should therefore be considered an alpha release and may change in the future**
-
 ## Getting started
 
 To use this client you must have:

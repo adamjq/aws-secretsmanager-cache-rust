@@ -1,7 +1,9 @@
+use std::num::NonZeroUsize;
+
 use super::cache_item::CacheItem;
 use super::config::CacheConfig;
 use aws_sdk_secretsmanager::error::GetSecretValueError;
-use aws_sdk_secretsmanager::{Client as SecretsManagerClient, SdkError};
+use aws_sdk_secretsmanager::{types::SdkError, Client as SecretsManagerClient};
 use lru::LruCache;
 
 /// Client for in-process caching of secret values from AWS Secrets Manager.
@@ -26,7 +28,10 @@ impl SecretCache {
     }
 
     fn new_cache(client: SecretsManagerClient, config: CacheConfig) -> Self {
-        let cache = LruCache::new(config.max_cache_size);
+        let cache = LruCache::new(
+            NonZeroUsize::new(config.max_cache_size)
+                .unwrap_or(NonZeroUsize::new(1).expect("Default max_cache_size must be non-zero")),
+        );
         Self {
             client,
             config,

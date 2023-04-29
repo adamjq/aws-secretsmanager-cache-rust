@@ -4,7 +4,7 @@ use super::cache_item::CacheItem;
 use super::config::CacheConfig;
 use aws_sdk_config::error::SdkError;
 use aws_sdk_secretsmanager::operation::get_secret_value::GetSecretValueError;
-use aws_sdk_secretsmanager::{Client as SecretsManagerClient};
+use aws_sdk_secretsmanager::Client as SecretsManagerClient;
 use lru::LruCache;
 
 /// Client for in-process caching of secret values from AWS Secrets Manager.
@@ -125,8 +125,8 @@ impl<'a> GetSecretStringBuilder<'a> {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use aws_sdk_secretsmanager::{Client as SecretsManagerClient, Config};
     use aws_sdk_config::config::{Credentials, Region};
+    use aws_sdk_secretsmanager::{Client as SecretsManagerClient, Config};
 
     #[test]
     fn get_secret_string_builder_defaults() {

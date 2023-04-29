@@ -116,8 +116,7 @@ The project uses [rustfmt](https://github.com/rust-lang/rustfmt) and [clippy](ht
 formatting and linting. Follow the instructions to install `rustfmt` and `clippy` and run:
 
 ```bash
-cargo fmt
-cargo clippy --fix
+cargo fix
 ```
 
 ### Tests

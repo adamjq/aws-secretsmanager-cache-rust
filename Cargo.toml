@@ -1,7 +1,7 @@
 [package]
 name = "aws-secretsmanager-cache"
 description = "A client for in-process caching of secrets from AWS Secrets manager"
-version = "0.4.0"
+version = "0.5.0"
 authors = ["Adam Quigley"]
 edition = "2021"
 license = "MIT OR Apache-2.0"
@@ -12,11 +12,12 @@ keywords = ["aws", "aws-secrets-manager", "aws-sdk-rust", "LRU", "cache"]
 categories = ["caching"]
 
 [dependencies]
-aws-config = "0.54.1"
-aws-sdk-secretsmanager = "0.24.0"
-tokio = { version = "1", features = ["full"] }
-lru = "0.9.0"
+aws-config = "0.55.1"
+aws-sdk-config = "0.26.0"
+aws-sdk-secretsmanager = "0.26.0"
+tokio = { version = "1.28.0", features = ["full"] }
+lru = "0.10.0"
 
 [dev-dependencies]
 lazy_static = "1.4.0"
-async_once = "0.2.1"
+async_once = "0.2.6"

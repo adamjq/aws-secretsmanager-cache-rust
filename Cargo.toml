@@ -12,12 +12,12 @@ keywords = ["aws", "aws-secrets-manager", "aws-sdk-rust", "LRU", "cache"]
 categories = ["caching"]
 
 [dependencies]
-aws-config = "0.55.1"
-aws-sdk-config = "0.26.0"
-aws-sdk-secretsmanager = "0.26.0"
-tokio = { version = "1.28.0", features = ["full"] }
-lru = "0.10.0"
+aws-config = "0.57.1"
+aws-sdk-config = "0.35.0"
+aws-sdk-secretsmanager = "0.35.0"
+lru = "0.12.0"
 
 [dev-dependencies]
 lazy_static = "1.4.0"
 async_once = "0.2.6"
+tokio = { version = "1.33.0", features = ["full"] }

@@ -9,7 +9,7 @@ async fn main() {
 
     let secret_id = "service/secret";
 
-    match cache.get_secret_string(secret_id.to_string()).send().await {
+    match cache.get_secret_string(secret_id).send().await {
         Ok(secret_value) => {
             println!(
                 "Successfully retrieved secret {}: {}",

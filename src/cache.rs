@@ -43,20 +43,20 @@ impl SecretCache {
     /// Returns a builder for getting secret strings.
     ///
     /// Retrieve the secret value with send()
-    pub fn get_secret_string(&mut self, secret_id: String) -> GetSecretStringBuilder {
+    pub fn get_secret_string<'a,'b>(&'a mut self, secret_id: &'b str) -> GetSecretStringBuilder<'a,'b> {
         GetSecretStringBuilder::new(self, secret_id)
     }
 }
 
 /// A builder for the get_secret_string method.
-pub struct GetSecretStringBuilder<'a> {
+pub struct GetSecretStringBuilder<'a,'b> {
     secret_cache: &'a mut SecretCache,
-    secret_id: String,
+    secret_id: &'b str,
     force_refresh: bool,
 }
 
-impl<'a> GetSecretStringBuilder<'a> {
-    pub fn new(secret_cache: &'a mut SecretCache, secret_id: String) -> Self {
+impl<'a,'b> GetSecretStringBuilder<'a,'b> {
+    pub fn new(secret_cache: &'a mut SecretCache, secret_id: &'b str) -> Self {
         GetSecretStringBuilder {
             secret_cache,
             secret_id,
@@ -84,7 +84,7 @@ impl<'a> GetSecretStringBuilder<'a> {
     /// Values are stored in the cache with the cache_item_ttl from the CacheConfig.
     pub async fn send(&mut self) -> Result<String, SdkError<GetSecretValueError>> {
         if !self.force_refresh {
-            if let Some(cache_item) = self.secret_cache.cache.get(&self.secret_id) {
+            if let Some(cache_item) = self.secret_cache.cache.get(self.secret_id) {
                 if !cache_item.is_expired() {
                     return Ok(cache_item.value.clone());
                 }
@@ -99,7 +99,7 @@ impl<'a> GetSecretStringBuilder<'a> {
                 );
                 self.secret_cache
                     .cache
-                    .put(self.secret_id.clone(), cache_item);
+                    .put(self.secret_id.to_string(), cache_item);
                 Ok(secret_value)
             }
             Err(e) => Err(e),
@@ -111,7 +111,7 @@ impl<'a> GetSecretStringBuilder<'a> {
             .secret_cache
             .client
             .get_secret_value()
-            .secret_id(self.secret_id.clone())
+            .secret_id(self.secret_id)
             .version_stage(self.secret_cache.config.version_stage.clone())
             .send()
             .await
@@ -133,7 +133,7 @@ mod tests {
         let mock_secrets_manager_client = get_mock_secretsmanager_client();
         let mut secret_cache = SecretCache::new(mock_secrets_manager_client);
 
-        let builder = GetSecretStringBuilder::new(&mut secret_cache, "service/secret".to_string());
+        let builder = GetSecretStringBuilder::new(&mut secret_cache, "service/secret");
 
         assert_eq!(builder.secret_id, "service/secret");
         assert!(!builder.force_refresh);
@@ -144,7 +144,7 @@ mod tests {
         let mock_secrets_manager_client = get_mock_secretsmanager_client();
         let mut secret_cache = SecretCache::new(mock_secrets_manager_client);
 
-        let builder = GetSecretStringBuilder::new(&mut secret_cache, "service/secret".to_string())
+        let builder = GetSecretStringBuilder::new(&mut secret_cache, "service/secret")
             .force_refresh();
 
         assert_eq!(builder.secret_id, "service/secret");

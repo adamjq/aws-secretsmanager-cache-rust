@@ -22,7 +22,7 @@ async fn main() {
         .await
         .lock() // acquire cache lock
         .unwrap()
-        .get_secret_string(secret_id.to_string())
+        .get_secret_string(secret_id)
         .send()
         .await
     {

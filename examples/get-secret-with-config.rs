@@ -15,7 +15,7 @@ async fn main() {
     let secret_id = "service/secret";
 
     match cache
-        .get_secret_string(secret_id.to_string())
+        .get_secret_string(secret_id)
         .force_refresh() // force the value to be fetched from AWS and updated in the cache
         .send()
         .await
